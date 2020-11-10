@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Real-time Slides Tutorial | Show</title>
-  <script src="/socket.io/socket.io.js"></script>
-  <style type="text/css">
+  <head>
+    <title>Real-time Slides Tutorial | Show</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css">
+      body {
+        background-color: #f1f2f6;
+        color: #222f3e;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+      }
 
-    body {
-      background-color: #f1f2f6;
-      color: #222f3e;
-      font-family: 'Helvetica', 'Arial', sans-serif;
-    }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
 
-    h1, h2, h3, h4, h5, p {
-      margin-bottom: 0px;
-    }
+      #slide {
+        margin: auto;
+        height: 80%;
+        width: 80%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 5vmin;
+        display: inline-block;
+        text-align: center;
+      }
 
-    #slide {
-      margin: auto;
-      height: 60%;
-      width: 80%;
-      position: fixed;
-      top:0;
-      bottom:0;
-      left:0;
-      right:0;
-      font-size: 5vmin;
-      display: inline-block;
-    }
+      img {
+        max-width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slide">
+      <h1>Carlos Gardel</h1>
+      <img
+        src="https://images-na.ssl-images-amazon.com/images/I/61nyqecSEeL._SY450_.jpg"
+        alt="Carlos Gardel's Tango Collection Album Cover"
+        srcset=""
+      />
+      <p>El cantante. El actor. El Zorzal.</p>
+    </div>
 
-  </style>
-</head>
-<body>
-  <div id="slide">
-    <h1>Real-time Slides ⏱</h1>
-    <p>Improvise your presentations, one slide at a time.</p>
-  </div>
+    <script type="text/javascript">
+      const socket = io();
 
-  <script type="text/javascript">
-
-    const socket = io();
-
-    socket.on('update slide', (html) => {
-      document.querySelector('#slide').innerHTML = html;
-    });
-
-  </script>
-</body>
+      socket.on('update slide', (html) => {
+        document.querySelector('#slide').innerHTML = html;
+      });
+    </script>
+  </body>
 </html>
